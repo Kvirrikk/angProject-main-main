@@ -1,0 +1,89 @@
+<div class="mainOfMain">
+
+  <form class="filterForm">
+    <div class="filterRow">
+      <div class="filterGroup">
+        <label>Vegetarian:</label>
+        <select [(ngModel)]="filters.vegeterian" name="vegeterian" (change)="applyFilters()">
+          <option [ngValue]="null">All</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+      </div>
+  
+      <div class="filterRow">
+      <div class="filterGroup">
+        <label>Contains Nuts:</label>
+        <select [(ngModel)]="filters.nuts" name="nuts"  (change)="applyFilters()">
+          <option [ngValue]="null">All</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="filterRow">
+      <div class="filterGroup">
+        <label>Spiciness:</label>
+        <select [(ngModel)]="filters.spiciness" name="spiciness" (change)="applyFilters()">
+          <option [ngValue]="null">All</option>
+          <option *ngFor="let spiciness of [0, 1, 2, 3, 4, 5]" [ngValue]="spiciness">{{ spiciness }}</option>
+        </select>
+      </div>
+      </div>
+  
+    <div class="filterRow">
+      <div class="filterGroup">
+        <label>Category:</label>
+        <select [(ngModel)]="filters.categoryId" name="categoryId" (change)="applyFilters()">
+          <option [ngValue]="null">All</option>
+          <option *ngFor="let cate of category" [ngValue]="cate.id">{{ cate.name }}</option>
+        </select>
+      </div>
+    </div>
+
+  </form>
+
+
+<div class="main">
+    
+    <div class="cont">
+        <div class="box" *ngFor="let product of products">
+             <img [src]="product.image" alt="">
+             <div class="names">
+                 <h3>Name: {{product.name}}</h3>
+                 <h3>Price: {{product.price}}$</h3>
+                 <h3>Contains nut: {{product.nuts ? 'Yes' : 'No'}}</h3>
+                 <h3>Is vegeterian: {{product.vegeterian ? 'Yes' : 'No'}}</h3>
+                 <h3>Spiciness: {{product.spiciness}} scoville</h3>
+                 <button (click)="addToBasket(product)">Add to basket</button>
+             </div>
+        </div>
+        </div>
+
+    <div class="basketSection">
+      <h2 class="basketH">Your Basket</h2>
+      <div class="productNames" *ngFor="let item of basket">
+        <p><strong>{{ item.name }}</strong></p>
+        <p>Price: {{ item.price }}$</p>
+        <div class="quantityControls">
+          <button (click)="updateQuantity(item, -1)">-</button>
+          <button (click)="updateQuantity(item, 1)">+</button>
+          <span>({{ item.quantity }})</span>
+          <button (click)="removeFromBasket(item.productId)">remove</button>
+        </div> 
+      </div>
+      <p><strong>Total:</strong> {{ getTotalPrice() }}$</p>
+      <button (click)="purchase()">Purchase now</button>
+ 
+
+
+    </div>
+
+    </div>
+
+    
+
+
+    

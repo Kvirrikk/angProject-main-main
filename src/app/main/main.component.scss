@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.mainOfMain {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 50px;
+    background-color: #66b2b2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+
+      .filterForm {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      
+      .filterRow {
+        display: flex;
+        gap: 2rem;
+      }
+      
+      .filterGroup {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+      }
+       
+      
+      label {
+        font-family: "Anton", sans-serif;
+        font-size: 24px;
+        color: #fff;
+        font-weight: 400;
+        margin-right: 0.5rem;
+      }
+    
+      select {
+        margin-right: 1.5rem;
+      }
+    
+      button {
+        height: 50px;
+        background-color: #007b7b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+    
+        &:hover {
+          background-color: #005e5e;
+        }
+      }
+    }
+
+.main {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #66b2b2;
+
+
+    .cont {
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+
+        .box {    
+                font-family: "Anton", sans-serif;
+                font-size: 15px;
+                color: #fff;    
+                font-weight: 400;
+                background-color: #e0e0e0;
+                border: 3px solid #ddd;
+                border-radius: 8px;
+                padding: 16px;
+                width: 250px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s, box-shadow 0.2s;
+
+            
+                .box:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+
+            img {
+                width: 100%;
+            }
+            
+
+        }
+    }
+}
+
+
+select {
+        width: 250px;
+        height: 50px;
+        background-color: #4ec0c0; 
+        color: white;
+        padding: 10px 16px;
+        font-size: 16px;
+        border: 2px solid #3b9d9d; 
+        border-radius: 6px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+      
+        &:hover {
+          background-color: #3b9d9d; 
+        }
+      
+        &:focus {
+          box-shadow: 0 0 10px rgba(78, 192, 192, 0.5);
+        }
+      
+        option {
+          background-color: #ffffff; 
+          color: #333; 
+        }
+      }
+
+
+    .basketSection{
+      max-width: 250px;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: "Anton", sans-serif;
+      font-size: 15px;
+      color: #000000;    
+      font-weight: 400;
+      padding: 30px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      border-radius: 12px;
+      max-width: 400px;
+
+
+    }

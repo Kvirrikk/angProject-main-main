@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.home {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 50px;
+  background-color: #66b2b2;
+  font-family: "Anton", sans-serif;
+  color: rgb(242, 242, 242);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .content-wrapper {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .atlantis {
+      max-width: 600px;
+      display: grid;
+      gap: 18px;
+
+      h1 {
+        font-size: 48px;
+      }
+
+      h2 {
+        font-size: 22px;
+        line-height: 1.5;
+      }
+    }
+
+    img {
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+    }
+  }
+
+  .cta {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 20px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      padding-bottom: 7px;
+      letter-spacing: 4px;
+      font-size: 14px;
+      padding-right: 15px;
+      text-transform: uppercase;
+      position: relative;
+      color: black;
+      padding-bottom: 20px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: black;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+    }
+
+    &:hover {
+      svg {
+        transform: translateX(0);
+      }
+
+      .hover-underline-animation::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
+
+    svg {
+      transform: translateX(-8px);
+      transition: all 0.3s ease;
+    }
+
+    &:active svg {
+      transform: scale(0.9);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+// .home {
+//     margin-top: 30px;
+//     padding: 50px;
+//     background-color: #66b2b2;
+//     font-family: "Anton", sans-serif;
+//     color: rgb(242, 242, 242);
+//     font-weight: 400;
+//     display: flex;
+//     gap: 24px;
+//     align-items: center;
+//     justify-content: space-between;
+//     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+//     .atlantis  {
+//         display: grid;
+//         align-items: center;
+//         justify-content: center;
+//         gap: 18px;
+//     }
+
+    
+    
+// img {
+//     border-radius: 12px;
+//     max-width: 600px;
+//     width: 100%;
+// }
+
+
+  
+// }
+
+// .cta {
+//     border: none;
+//     background: none;
+//     cursor: pointer;
+//   }
+  
+//   .cta span {
+//     padding-bottom: 7px;
+//     letter-spacing: 4px;
+//     font-size: 14px;
+//     padding-right: 15px;
+//     text-transform: uppercase;
+//   }
+  
+//   .cta svg {
+//     transform: translateX(-8px);
+//     transition: all 0.3s ease;
+//   }
+  
+//   .cta:hover svg {
+//     transform: translateX(0);
+//   }
+  
+//   .cta:active svg {
+//     transform: scale(0.9);
+//   }
+  
+//   .hover-underline-animation {
+//     position: relative;
+//     color: black;
+//     padding-bottom: 20px;
+//   }
+  
+//   .hover-underline-animation:after {
+//     content: "";
+//     position: absolute;
+//     width: 100%;
+//     transform: scaleX(0);
+//     height: 2px;
+//     bottom: 0;
+//     left: 0;
+//     background-color: #000000;
+//     transform-origin: bottom right;
+//     transition: transform 0.25s ease-out;
+//   }
+  
+//   .cta:hover .hover-underline-animation:after {
+//     transform: scaleX(1);
+//     transform-origin: bottom left;
+//   }

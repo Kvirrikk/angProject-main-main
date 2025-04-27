@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+.about {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 70px;
+    display: grid;
+    align-items: center;
+    gap: 12px;
+    background-color: #66b2b2;
+    font-family: "Anton", sans-serif;
+    color: rgb(242, 242, 242);
+    font-weight: 400;
+
+    gap: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .about_cont {
+            display: flex;
+            gap: 28px;
+            justify-content: space-between;
+            align-items: center;
+    }
+
+    img {
+        max-width: 600px;
+        border-radius: 12px;
+    }
+}  
