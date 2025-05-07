@@ -152,3 +152,70 @@ select {
 
 
     }
+
+    @media screen and (max-width: 524px) {
+     
+      label {
+        font-size: 14px;
+      }
+    
+     
+          
+       select {
+              font-size: 16px;
+              width: 100%;
+       }
+    
+      .mainOfMain {
+        padding: 14px;
+      }
+    
+      .main {
+        flex-direction: column;
+      }
+    
+      .box {
+        width: 90% !important;
+        margin-bottom: 20px;
+      }
+    
+      .basketSection {
+        width: 100% !important;
+        padding: 10px;
+      }
+    }
+
+
+
+
+    @media screen and (max-width: 420px) {
+     
+      label {
+        font-size: 10px;
+      }
+    
+     
+          
+       select {
+              font-size: 13px;
+              width: 100%;
+       }
+    
+      .mainOfMain {
+        padding: 10px;
+      }
+    
+      .main {
+        flex-direction: column;
+      }
+    
+      .box {
+        width: 80% !important;
+        margin-bottom: 20px;
+      }
+    
+      .basketSection {
+        width: 100% !important;
+        padding: 10px;
+      }
+    }

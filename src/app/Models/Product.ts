@@ -1,3 +1,5 @@
+import { signal, Signal } from "@angular/core";
+
 export class Products{
     id?: number;
     name!: string;
@@ -9,7 +11,12 @@ export class Products{
   }
 
   export interface BasketItem {
-    quantity: number;
-    price: number;
-    productId: number;
+      productId: number; 
+      name: string; 
+      originalPrice: number; 
+      quantity: number; 
+      price: number; 
   }
+
+
+  

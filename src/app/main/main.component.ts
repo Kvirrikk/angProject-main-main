@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { UserService } from '../Services/product/product.service';
 import { Router } from '@angular/router';
 import { Products } from '../Models/Product';
@@ -15,7 +15,6 @@ import Swal from 'sweetalert2';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-
 
   basket: any[] = []
   products: Products[] = []
@@ -68,23 +67,30 @@ export class MainComponent {
         this.basket = resp;
       });
     }
+    
     addToBasket(product: any) {
       let existing = this.basket.find(p => p.productId === product.id);
     
       if (existing) {
         this.updateQuantity(existing, 1); 
       } else {
+        let quantitySignal = signal(1);
+        let priceSignal = signal(product.price);
+    
         let newItem = {
           productId: product.id,
           name: product.name,
-          quantity: 1,
-          price: product.price
+          quantity: quantitySignal,
+          price: priceSignal,
+          originalPrice: product.price
         };
     
         this.productService.addToTheBasket({
           productId: newItem.productId,
-          quantity: newItem.quantity,
-          price: newItem.price
+          quantity: quantitySignal(),
+          price: priceSignal(),
+          name: newItem.name,
+          originalPrice: newItem.originalPrice
         }).subscribe(res => {
           console.log('Added to basket:', res);
           this.basket.push(newItem); 
@@ -92,28 +98,35 @@ export class MainComponent {
       }
     }
     
-    
+
     updateQuantity(item: any, change: number) {
-      let newQuantity = item.quantity + change;
+      let currentQuantity = item.quantity();
+      let newQuantity = currentQuantity + change;
+    
       if (newQuantity <= 0) {
         this.apiService.deleteProductFromBasket(item.productId).subscribe(() => {
           this.basket = this.basket.filter(p => p.productId !== item.productId);
         });
       } else {
-        item.quantity = newQuantity;
-        
-  
-        let unitPrice = item.originalPrice ?? (item.price / (item.quantity - change));
-        item.originalPrice = unitPrice; 
-        item.price = unitPrice * newQuantity;
+        item.quantity.set(newQuantity);
+    
+        let unitPrice = item.originalPrice ?? (item.price() / currentQuantity);
+        item.originalPrice = unitPrice;
+        item.price.set(unitPrice * newQuantity);
     
         this.productService.updateInBasket({
           productId: item.productId,
-          quantity: item.quantity,
-          price: item.price
+          quantity: item.quantity(),
+          price: item.price(),
+          name: item.name,
+          originalPrice: item.originalPrice
         }).subscribe();
       }
     }
+    
+    
+    
+    
 
     removeFromBasket(productId: number) {
       this.apiService.deleteProductFromBasket(productId).subscribe(
@@ -132,8 +145,12 @@ export class MainComponent {
 
 
     getTotalPrice(): number {
-      return this.basket.reduce((sum, item) => sum + item.price, 0);
+      return this.basket.reduce((sum, item) => {
+        return sum + (item.price() || 0); 
+      }, 0);
     }
+    
+    
     
     
 
@@ -203,3 +220,82 @@ export class MainComponent {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // addToBasket(product: any) {
+    //   let existing = this.basket.find(p => p.productId === product.id);
+    
+    //   if (existing) {
+    //     this.updateQuantity(existing, 1); 
+    //   } else {
+    //     let newItem = {
+    //       productId: product.id,
+    //       name: product.name,
+    //       quantity: 1,
+    //       price: product.price
+    //     };
+    
+    //     this.productService.addToTheBasket({
+    //       productId: newItem.productId,
+    //       quantity: newItem.quantity,
+    //       price: newItem.price,
+    //       name: '',
+    //       originalPrice: 0
+    //     }).subscribe(res => {
+    //       console.log('Added to basket:', res);
+    //       this.basket.push(newItem); 
+    //     });
+    //   }
+    // }
+
+
+
+
+// updateQuantity(item: any, change: number) {
+    //   let newQuantity = item.quantity + change;
+    //   if (newQuantity <= 0) {
+    //     this.apiService.deleteProductFromBasket(item.productId).subscribe(() => {
+    //       this.basket = this.basket.filter(p => p.productId !== item.productId);
+    //     });
+    //   } else {
+    //     item.quantity = newQuantity;
+        
+  
+    //     let unitPrice = item.originalPrice ?? (item.price / (item.quantity - change));
+    //     item.originalPrice = unitPrice; 
+    //     item.price = unitPrice * newQuantity;
+    
+    //     this.productService.updateInBasket({
+    //       productId: item.productId,
+    //       quantity: item.quantity,
+    //       price: item.price,
+    //       name: '',
+    //       originalPrice: 0
+    //     }).subscribe();
+    //   }
+    // }
+
+
+

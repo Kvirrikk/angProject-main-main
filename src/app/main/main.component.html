@@ -62,20 +62,20 @@
         </div>
         </div>
 
-    <div class="basketSection">
-      <h2 class="basketH">Your Basket</h2>
-      <div class="productNames" *ngFor="let item of basket">
-        <p><strong>{{ item.name }}</strong></p>
-        <p>Price: {{ item.price }}$</p>
-        <div class="quantityControls">
-          <button (click)="updateQuantity(item, -1)">-</button>
-          <button (click)="updateQuantity(item, 1)">+</button>
-          <span>({{ item.quantity }})</span>
-          <button (click)="removeFromBasket(item.productId)">remove</button>
-        </div> 
-      </div>
-      <p><strong>Total:</strong> {{ getTotalPrice() }}$</p>
-      <button (click)="purchase()">Purchase now</button>
+        <div class="basketSection">
+          <h2 class="basketH">Your Basket</h2>
+          <div class="productNames" *ngFor="let item of basket">
+            <p><strong>{{ item.name }}</strong></p>
+            <p>Price: {{ item.price() }}$</p>
+            <div class="quantityControls">
+              <button (click)="updateQuantity(item, -1)">-</button>
+              <button (click)="updateQuantity(item, 1)">+</button>
+              <span>({{ item.quantity() }})</span>
+              <button (click)="removeFromBasket(item.productId)">remove</button>
+            </div> 
+          </div>
+          <p><strong>Total:</strong> {{ getTotalPrice() }}$</p>
+          <button (click)="purchase()">Purchase now</button>
  
 
 
