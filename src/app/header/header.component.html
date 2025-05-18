@@ -5,6 +5,9 @@
            <li><a routerLink="/home" [routerLinkActive]="active">Home</a></li>
            <li><a routerLink="/about" [routerLinkActive]="active">About us</a></li>
            <li><a routerLink="/contact" [routerLinkActive]="active">Contact us</a></li>
+           <li><a routerLink="/register" [routerLinkActive]="activeRouteClass" *ngIf="!isAuthNew">Register</a></li>
+           <li><a routerLink="/logIn" [routerLinkActive]="activeRouteClass" *ngIf="!isAuthNew">Log In</a></li>
+           <li><a *ngIf="isAuthNew" (click)="logOut()" style="cursor: pointer;">Log Out</a></li>
         </ul>
      </nav>
     </div>

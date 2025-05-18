@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
 import { BasketItem } from '../../Models/Product';
+import { RegisterUser } from '../../register/register.component';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,14 @@ updateInBasket(data: BasketItem) {
 getBasket() {
   return this.http.getTheBasket('https://restaurant.stepprojects.ge/api/Baskets/GetAll')
 }
+
+ register(user : RegisterUser){
+      return this.http.post("https://rentcar.stepprojects.ge/api/Users/register", user)
+  }
+
+    logIn(user : RegisterUser){
+      return this.http.post("https://rentcar.stepprojects.ge/api/Users/login", user)
+  }
 
 
 

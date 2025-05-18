@@ -1,0 +1,30 @@
+
+<div class="mainDiv">
+  <div class="form-container">
+    <p class="title">Login</p>
+    <form class="form" (ngSubmit)="login()" #registerForm="ngForm">
+      <div class="input-group">
+        <label>Phone number</label>
+        <input
+          type="text"
+          name="number"
+          [(ngModel)]="registerUser.phoneNumber"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="text"
+          name="password"
+          [(ngModel)]="registerUser.password"
+          required
+        />
+      </div>
+
+      <button class="sign" type="submit">Log in</button>
+    </form>
+  </div>
+</div>
+

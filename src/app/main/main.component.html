@@ -42,7 +42,7 @@
         </select>
       </div>
     </div>
-
+    <button type="button" (click)="resetFilters()">Reset Filters</button>
   </form>
 
 
@@ -60,7 +60,8 @@
                  <button (click)="addToBasket(product)">Add to basket</button>
              </div>
         </div>
-        </div>
+         <p *ngIf="products.length === 0" class="no-products">no results found unfortunately</p>
+    </div>
 
         <div class="basketSection">
           <h2 class="basketH">Your Basket</h2>

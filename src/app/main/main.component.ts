@@ -60,6 +60,17 @@ export class MainComponent {
         this.products = resp
       });
     }
+
+    resetFilters() {
+      this.filters = {
+        vegeterian: null,
+        nuts: null,
+        spiciness: null,
+        categoryId: null
+  };
+      this.applyFilters(); 
+}
+
     
 
     getBasket() {

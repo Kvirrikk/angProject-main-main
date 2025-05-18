@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BasketItem } from '../Models/Product';
+import { RegisterUser } from '../register/register.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,10 @@ deleteProductFromBasket(id: number): Observable<any> {
 
 getTheBasket(url : string): Observable<any> {
   return this.http.get<any>(url)
+}
+
+post(url: string, postData : any): Observable<any> {
+  return this.http.post<any>(url, postData);
 }
 
  
