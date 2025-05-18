@@ -26,8 +26,6 @@ export class AuthService {
     this.router.navigateByUrl('logInNewUser')
   }
   isLogedIn(){
-     
-
    return this.isAuthorized
   }
 

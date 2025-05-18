@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../Services/api.service';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -28,6 +29,7 @@ export class MainComponent {
     private router: Router,
     private productService: UserService,  
     private apiService: ApiService,
+    public authService : AuthService
   ){ }
 
 
@@ -179,28 +181,52 @@ export class MainComponent {
       }
     }
 
-    purchase() {
-      if (this.basket.length === 0) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Your basket is empty',
-          text: 'Add at least one product before buying it.',
-          confirmButtonText: 'Okay'
-        });
-        return;                          
-      }
-    
+   purchase() {
+  if (!this.authService.isLogedIn()) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Login Required!',
+      text: 'Please log in before purchasing.',
+      confirmButtonText: 'Go to Login'
+    }).then(() => {
+      this.router.navigate(['/login']); 
+    });
+    return; 
+  }
+
+  if (!this.basket || this.basket.length === 0) {
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Your basket is empty!',
+      text: 'Add at least one product before making a purchase.',
+      confirmButtonText: 'Okay'
+    });
+    return; 
+  }
+
+
+  Swal.fire({
+    title: 'Confirm Purchase',
+    text: `Total Price: ${this.getTotalPrice()}$ Proceed with purchase?`,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, buy now!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
       let deleteRequests = this.basket.map(product =>
         this.apiService.deleteProductFromBasket(product.productId)
       );
-    
+
       forkJoin(deleteRequests).subscribe({
         next: () => {
           this.basket = [];
           Swal.fire({
             icon: 'success',
-            title: 'Purchase completed!',
-            text: 'Your product will be delivered soon',
+            title: 'Purchase Completed!',
+            text: 'Your product will be delivered soon.',
             confirmButtonText: 'Alright'
           });
         },
@@ -214,6 +240,12 @@ export class MainComponent {
         }
       });
     }
+  });
+}
+
+
+
+  
     
   products$ ? : Observable<any>
 
