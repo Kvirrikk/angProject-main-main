@@ -41,8 +41,8 @@ else {
       console.log(resp);
       Swal.fire({
         icon: 'success',
-        title: 'Registration Successful!',
-        text: 'Welcome aboard!',
+        title: 'You registered',
+        text: 'Happy shopping in our Restaurant website',
         timer: 2000,
         showConfirmButton: false
       }).then(() => {
